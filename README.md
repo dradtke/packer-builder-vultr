@@ -1,7 +1,7 @@
 Vultr builder plugin for Packer
 ===============================
 
-A first-draft Packer building for creating Vultr snapshots.
+A Packer builder for creating Vultr snapshots.
 
 ## Building
 
@@ -13,7 +13,7 @@ $ go get -d github.com/mitchellh/packer
 $ go get -d github.com/dradtke/packer-builder-vultr
 ```
 
-Then copy the contents of `vultr/` to Packer's source tree:
+Copy the contents of `vultr/` to Packer's source tree:
 
 ```sh
 $ cp -r vultr $GOPATH/src/github.com/mitchellh/packer/builder/
