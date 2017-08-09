@@ -16,7 +16,9 @@ func (s *stepCreate) Run(state multistep.StateBag) multistep.StepAction {
 	c := state.Get("config").(Config)
 	ui := state.Get("ui").(packer.Ui)
 
-	opts := &vultr.ServerOptions{}
+	opts := &vultr.ServerOptions{
+		Script: c.ScriptID,
+	}
 	if c.OSID == SnapshotOSID {
 		opts.Snapshot = c.SnapshotID
 	}

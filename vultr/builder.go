@@ -3,7 +3,6 @@ package vultr
 import (
 	"context"
 	"errors"
-	"fmt"
 
 	vultr "github.com/JamesClonk/vultr/lib"
 	"github.com/hashicorp/go-multierror"
@@ -36,8 +35,6 @@ func (b *Builder) Prepare(raws ...interface{}) (warnings []string, err error) {
 	}, raws...); err != nil {
 		return warnings, err
 	}
-
-	fmt.Println(b.config)
 
 	b.ctx, b.cancel = context.WithCancel(context.Background())
 	b.done = make(chan struct{})
