@@ -12,6 +12,16 @@ func commHost(state multistep.StateBag) (string, error) {
 	return state.Get("server").(vultr.Server).MainIP, nil
 }
 
+func keyboardInteractive(password string) ssh.KeyboardInteractiveChallenge {
+	return func(user, instruction string, questions []string, echos []bool) ([]string, error) {
+		answers := make([]string, len(questions))
+		for i := range questions {
+			answers[i] = password
+		}
+		return answers, nil
+	}
+}
+
 func sshConfig(state multistep.StateBag) (*ssh.ClientConfig, error) {
 	c := state.Get("config").(Config)
 	server := state.Get("server").(vultr.Server)
@@ -25,9 +35,9 @@ func sshConfig(state multistep.StateBag) (*ssh.ClientConfig, error) {
 	}
 
 	if c.OSID == SnapshotOSID || c.OSID == CustomOSID {
-		config.Auth = append(config.Auth, ssh.Password(c.SSHPassword))
+		config.Auth = append(config.Auth, ssh.Password(c.SSHPassword), keyboardInteractive(c.SSHPassword))
 	} else {
-		config.Auth = append(config.Auth, ssh.Password(server.DefaultPassword))
+		config.Auth = append(config.Auth, ssh.Password(server.DefaultPassword), keyboardInteractive(server.DefaultPassword))
 	}
 
 	return config, nil

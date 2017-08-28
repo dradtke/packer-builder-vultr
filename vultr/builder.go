@@ -121,6 +121,10 @@ func (b *Builder) Prepare(raws ...interface{}) (warnings []string, err error) {
 		}
 	}
 
+	if (b.config.OSID == SnapshotOSID || b.config.OSID == CustomOSID) && b.config.SSHPassword == "" {
+		return nil, errors.New("no SSH password defined for snapshot or custom OS")
+	}
+
 	if b.config.Description == "" {
 		return warnings, errors.New("configuration value `description` is not defined")
 	}
@@ -149,6 +153,7 @@ func (b *Builder) Run(ui packer.Ui, hook packer.Hook, cache packer.Cache) (ret p
 			SSHConfig: sshConfig,
 		},
 		&common.StepProvision{},
+		&stepShutdown{},
 		&stepSnapshot{b.v},
 	}
 

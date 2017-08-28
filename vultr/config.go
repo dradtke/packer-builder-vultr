@@ -14,18 +14,19 @@ type Config struct {
 	APIKey string `mapstructure:"api_key"`
 	// RootPass string `mapstructure:"root_pass"`
 
-	Description string `mapstructure:"description"`
-	RegionID    int    `mapstructure:"region_id"`
-	RegionName  string `mapstructure:"region_name"`
-	RegionCode  string `mapstructure:"region_code"`
-	PlanID      int    `mapstructure:"plan_id"`
-	PlanName    string `mapstructure:"plan_name"`
-	OSID        int    `mapstructure:"os_id"`
-	OSName      string `mapstructure:"os_name"`
-	ScriptID    int    `mapstructure:"script_id"`
-	SnapshotID  string `mapstructure:"snapshot_id"`
-	SSHUsername string `mapstructure:"ssh_username"`
-	SSHPassword string `mapstructure:"ssh_password"`
+	Description     string `mapstructure:"description"`
+	RegionID        int    `mapstructure:"region_id"`
+	RegionName      string `mapstructure:"region_name"`
+	RegionCode      string `mapstructure:"region_code"`
+	PlanID          int    `mapstructure:"plan_id"`
+	PlanName        string `mapstructure:"plan_name"`
+	OSID            int    `mapstructure:"os_id"`
+	OSName          string `mapstructure:"os_name"`
+	ScriptID        int    `mapstructure:"script_id"`
+	SnapshotID      string `mapstructure:"snapshot_id"`
+	SSHUsername     string `mapstructure:"ssh_username"`
+	SSHPassword     string `mapstructure:"ssh_password"`
+	ShutdownCommand string `mapstructure:"shutdown_command"`
 
 	/*
 		DatacenterID   int    `mapstructure:"datacenter_id"`
