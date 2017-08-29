@@ -16,6 +16,7 @@ func (s *stepShutdown) Run(state multistep.StateBag) multistep.StepAction {
 	ui := state.Get("ui").(packer.Ui)
 	server := state.Get("server").(vultr.Server)
 
+	ui.Say("Preparing the server for a graceful shutdown...")
 	config, err := sshConfig(state)
 	if err != nil {
 		state.Put("error", err)
@@ -41,11 +42,7 @@ func (s *stepShutdown) Run(state multistep.StateBag) multistep.StepAction {
 		c.ShutdownCommand = "shutdown -P now"
 	}
 	ui.Say("Shutting down server...")
-	if err = session.Run(c.ShutdownCommand); err != nil {
-		state.Put("error", err)
-		ui.Error(err.Error())
-		return multistep.ActionHalt
-	}
+	session.Run(c.ShutdownCommand)
 
 	ui.Say("Sleeping to ensure that server is shut down...")
 	time.Sleep(3 * time.Second)
