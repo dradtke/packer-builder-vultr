@@ -9,14 +9,14 @@ Due to vendoring issues, at the moment this package must be built from within
 Packer's source code. So, fetch this repo and Packer:
 
 ```sh
-$ go get -d github.com/mitchellh/packer
+$ go get -d github.com/hashicorp/packer
 $ go get -d github.com/dradtke/packer-builder-vultr
 ```
 
 Copy the contents of `vultr/` to Packer's source tree:
 
 ```sh
-$ cp -r vultr $GOPATH/src/github.com/mitchellh/packer/builder/
+$ cp -r ${GOPATH:-~/go}/src/github.com/dradtke/packer-builder-vultr/vultr ${GOPATH:-~/go}/src/github.com/hashicorp/packer/builder/
 ```
 
 Then open up Packer's file `command/plugin.go` and add Vultr as a new builder.
