@@ -16,7 +16,7 @@ $ go get -d github.com/dradtke/packer-builder-vultr
 Copy the contents of `vultr/` to Packer's source tree:
 
 ```sh
-$ cp -r vultr $GOPATH/src/github.com/mitchellh/packer/builder/
+$ cp -r ${GOPATH:-~/go}/src/github.com/dradtke/packer-builder-vultr/vultr ${GOPATH:-~/go}/src/github.com/mitchellh/packer/builder/
 ```
 
 Then open up Packer's file `command/plugin.go` and add Vultr as a new builder.
