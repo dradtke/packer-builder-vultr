@@ -1,17 +1,18 @@
 package vultr
 
 import (
+    "context"
 	"time"
 
 	vultr "github.com/JamesClonk/vultr/lib"
-	"github.com/mitchellh/multistep"
+	"github.com/hashicorp/packer/helper/multistep"
 	"github.com/mitchellh/packer/packer"
 	"golang.org/x/crypto/ssh"
 )
 
 type stepShutdown struct{}
 
-func (s *stepShutdown) Run(state multistep.StateBag) multistep.StepAction {
+func (s *stepShutdown) Run(_ context.Context, state multistep.StateBag) multistep.StepAction {
 	c := state.Get("config").(Config)
 	ui := state.Get("ui").(packer.Ui)
 	server := state.Get("server").(vultr.Server)
