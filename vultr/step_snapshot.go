@@ -1,18 +1,19 @@
 package vultr
 
 import (
+    "context"
 	"time"
 
 	vultr "github.com/JamesClonk/vultr/lib"
 	"github.com/hashicorp/packer/packer"
-	"github.com/mitchellh/multistep"
+	"github.com/hashicorp/packer/helper/multistep"
 )
 
 type stepSnapshot struct {
 	v *vultr.Client
 }
 
-func (s *stepSnapshot) Run(state multistep.StateBag) multistep.StepAction {
+func (s *stepSnapshot) Run(_ context.Context, state multistep.StateBag) multistep.StepAction {
 	c := state.Get("config").(Config)
 	ui := state.Get("ui").(packer.Ui)
 	server := state.Get("server").(vultr.Server)
