@@ -1,24 +1,25 @@
 package vultr
 
 import (
+	"context"
 	"errors"
 	"io"
 	"os"
 
 	"github.com/hashicorp/packer/helper/multistep"
-	"github.com/mitchellh/packer/packer"
+	"github.com/hashicorp/packer/packer"
 	"golang.org/x/crypto/ssh"
 )
 
 type stepProvision struct{}
 
-func (s *stepProvision) Run(state multistep.StateBag) multistep.StepAction {
+func (s *stepProvision) Run(ctx context.Context,state multistep.StateBag) multistep.StepAction {
 	ui := state.Get("ui").(packer.Ui)
 	comm := state.Get("communicator").(packer.Communicator)
 	hook := state.Get("hook").(packer.Hook)
 
 	ui.Say("Provisioning...")
-	hook.Run(packer.HookProvision, ui, comm, nil)
+	hook.Run(ctx,packer.HookProvision, ui, comm, nil)
 
 	return multistep.ActionContinue
 }

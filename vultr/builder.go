@@ -136,7 +136,7 @@ func (b *Builder) Prepare(raws ...interface{}) (warnings []string, err error) {
 	return warnings, nil
 }
 
-func (b *Builder) Run(ui packer.Ui, hook packer.Hook, cache packer.Cache) (ret packer.Artifact, err error) {
+func (b *Builder) Run(ctx context.Context,ui packer.Ui, hook packer.Hook) (ret packer.Artifact, err error) {
 	defer close(b.done)
 
 	state := new(multistep.BasicStateBag)
@@ -158,7 +158,7 @@ func (b *Builder) Run(ui packer.Ui, hook packer.Hook, cache packer.Cache) (ret p
 	}
 
 	b.runner = &multistep.BasicRunner{Steps: steps}
-	b.runner.Run(state)
+	b.runner.Run(ctx,state)
 
 	if rawErr, ok := state.GetOk("error"); ok {
 		return nil, rawErr.(error)
