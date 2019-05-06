@@ -1,12 +1,12 @@
 package vultr
 
 import (
-    "context"
+	"context"
 	"time"
 
 	vultr "github.com/JamesClonk/vultr/lib"
 	"github.com/hashicorp/packer/helper/multistep"
-	"github.com/mitchellh/packer/packer"
+	"github.com/hashicorp/packer/packer"
 	"golang.org/x/crypto/ssh"
 )
 
