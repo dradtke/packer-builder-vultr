@@ -1,7 +1,7 @@
 package vultr
 
 import (
-    "context"
+	"context"
 	"time"
 
 	vultr "github.com/JamesClonk/vultr/lib"

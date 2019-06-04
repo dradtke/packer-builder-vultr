@@ -13,13 +13,13 @@ import (
 
 type stepProvision struct{}
 
-func (s *stepProvision) Run(ctx context.Context,state multistep.StateBag) multistep.StepAction {
+func (s *stepProvision) Run(ctx context.Context, state multistep.StateBag) multistep.StepAction {
 	ui := state.Get("ui").(packer.Ui)
 	comm := state.Get("communicator").(packer.Communicator)
 	hook := state.Get("hook").(packer.Hook)
 
 	ui.Say("Provisioning...")
-	hook.Run(ctx,packer.HookProvision, ui, comm, nil)
+	hook.Run(ctx, packer.HookProvision, ui, comm, nil)
 
 	return multistep.ActionContinue
 }

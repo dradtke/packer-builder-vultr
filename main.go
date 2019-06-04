@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/dradtke/packer-builder-vultr/vultr"
-	"github.com/mitchellh/packer/packer/plugin"
+	"github.com/hashicorp/packer/packer/plugin"
 )
 
 func main() {
