@@ -20,6 +20,7 @@ func (s *stepCreate) Run(_ context.Context, state multistep.StateBag) multistep.
 	opts := &vultr.ServerOptions{
 		Script:               c.ScriptID,
 		DontNotifyOnActivate: true,
+		SSHKey:               c.SSHKey,
 	}
 	if c.OSID == SnapshotOSID {
 		opts.Snapshot = c.SnapshotID
