@@ -24,6 +24,7 @@ type Config struct {
 	OSName          string `mapstructure:"os_name"`
 	ScriptID        int    `mapstructure:"script_id"`
 	SnapshotID      string `mapstructure:"snapshot_id"`
+	SSHKey          string `mapstructure:"ssh_key_id"`
 	SSHUsername     string `mapstructure:"ssh_username"`
 	SSHPassword     string `mapstructure:"ssh_password"`
 	ShutdownCommand string `mapstructure:"shutdown_command"`
